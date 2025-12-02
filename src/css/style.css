@@ -7,7 +7,8 @@ html {
 }
 
 .hero-section {
-    background-image: url(../assets/images/hero-section.png);
+    background-image: url(../assets/images/hero-section.jpeg);
+    filter: grayscale(40%);
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
