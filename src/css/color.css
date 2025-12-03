@@ -8,6 +8,8 @@
     --text-light-grey: #e0e0e0;
     --text-dark-grey: #555555;
     --text-accent-teal: #4db6ac;
-
+    
     --shadow-light: rgba(255, 255, 255, 0.05);
+
+    --border-dark: #333333;
 }
