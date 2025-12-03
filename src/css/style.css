@@ -1,6 +1,5 @@
-@import './constants/constant-color.css';
-
-body,html {
+body,
+html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -32,7 +31,7 @@ body,html {
 }
 
 .navbar {
-    background: var(--bg-light);
+    background: #F2F3F5;
     padding: 1rem 3rem;
     border-radius: 2rem;
     display: flex;
@@ -43,13 +42,13 @@ body,html {
 
 .navbar a {
     text-decoration: none;
-    color: var(--primary-text);
+    color: #397578;
     font-size: 1rem;
     letter-spacing: 2px;
 }
 
 .navbar a:hover {
-    color: var(--primary-hover);
+    color: #d19a00;
     text-decoration: underline;
     transition: color 0.5s ease;
 }
@@ -58,7 +57,7 @@ body,html {
     display: none;
     width: 2.5rem;
     padding: 0.4rem;
-    background-color: var(--bg-light);
+    background-color: #F2F3F5;
     border-radius: 2rem;
     cursor: pointer;
 }
@@ -85,7 +84,7 @@ body,html {
 
 .mobile-navbar a {
     text-decoration: none;
-    color: var(--primary-text);
+    color: #397578;
     padding: 0.35rem 0.5rem;
     font-size: 0.95rem;
     letter-spacing: 1px;
@@ -93,7 +92,7 @@ body,html {
 
 .mobile-navbar a:active,
 .mobile-navbar a:hover {
-    color: var(--primary-hover);
+    color: #d19a00
 }
 
 .mobile-navbar.open {
