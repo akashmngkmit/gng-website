@@ -1,8 +1,8 @@
 @import './color.css';
 
 .about-section {
-    background-color: var(--color-bg-section-dark);
-    color: var(--color-text-light-grey);
+    background-color: var(--color-black);
+    color: var(--color-white);
     padding: 5rem 5%;
     display: flex;
     flex-direction: column;
@@ -16,6 +16,7 @@
     justify-content: center;
     gap: 4rem;
     max-width: 68.75rem;
+    /* 1100px */
     width: 100%;
 }
 
@@ -29,7 +30,7 @@
 
 .about-text h2 {
     font-size: 2.5rem;
-    color: var(--color-primary-teal);
+    color: var(--color-teal-light);
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.094rem;
@@ -37,7 +38,7 @@
 
 .about-text h3 {
     font-size: 1.25rem;
-    color: var(--color-primary-accent);
+    color: var(--color-gold);
     margin-bottom: 1rem;
     font-weight: 600;
 }
@@ -45,7 +46,7 @@
 .about-text p {
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--color-text-light-grey);
+    color: var(--color-grey-lighter);
     margin-bottom: 1rem;
 }
 
@@ -61,7 +62,7 @@
     height: 21.875rem;
     object-fit: cover;
     border-radius: 0.75rem;
-    box-shadow: 0 0 1.25rem var(--color-shadow-light);
+    box-shadow: 0 0 1.25rem var(--color-white-transparent);
 }
 
 .gallery-container {
@@ -72,7 +73,7 @@
 
 .gallery-title {
     font-size: 2rem;
-    color: var(--color-primary-teal);
+    color: var(--color-white);
     margin-bottom: 2rem;
 }
 
@@ -83,7 +84,7 @@
 }
 
 .gallery-item {
-    background: var(--color-bg-card-dark);
+    background: var(--color-grey-darker);
     border-radius: 0.75rem;
     overflow: hidden;
     transition: transform 0.2s;
@@ -108,14 +109,14 @@
 }
 
 .gallery-info h4 {
-    color: var(--color-primary-accent);
+    color: var(--color-teal-dark);
     margin-bottom: 0.4rem;
     font-size: 1.05rem;
     font-weight: bold;
 }
 
 .gallery-info p {
-    color: var(--color-text-light-grey);
+    color: var(--color-white);
     font-size: 0.9rem;
     line-height: 1.4;
 }

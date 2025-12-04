@@ -53,7 +53,7 @@ body {
 }
 
 .navbar {
-    background: var(--color-bg-light);
+    background: var(--color-grey-light);
     padding: 1rem 3rem;
     border-radius: 2rem;
     display: flex;
@@ -64,14 +64,14 @@ body {
 
 .navbar a {
     text-decoration: none;
-    color: var(--color-primary-teal);
+    color: var(--color-teal-dark);
     font-size: 1rem;
     letter-spacing: 2px;
     transition: color 0.5s ease;
 }
 
 .navbar a:hover {
-    color: var(--color-primary-accent);
+    color: var(--color-gold);
     text-decoration: underline;
 }
 
@@ -81,7 +81,7 @@ body {
     width: 2.5rem;
     height: 2.5rem;
     padding: 0.4rem;
-    background-color: var(--color-bg-light);
+    background-color: var(--color-grey-light);
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -117,7 +117,7 @@ body {
 
 .mobile-navbar a {
     text-decoration: none;
-    color: var(--color-primary-teal);
+    color: var(--color-teal-dark);
     padding: 0.35rem 0.5rem;
     font-size: 0.95rem;
     letter-spacing: 1px;
@@ -125,7 +125,7 @@ body {
 
 .mobile-navbar a:active,
 .mobile-navbar a:hover {
-    color: var(--color-primary-accent);
+    color: var(--color-gold);
 }
 
 .mobile-navbar.open {
