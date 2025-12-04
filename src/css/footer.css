@@ -4,7 +4,7 @@
     background-color: var(--color-bg-section-dark);
     color: var(--color-text-white);
     padding: 2rem 5%;
-    border-top: 1px solid var(--color-border-dark);
+    border-top: 1px solid var(--color-grey-dark);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,6 +13,7 @@
     box-sizing: border-box;
 }
 
+/* App Name */
 .footer-title {
     font-size: 1.25rem;
     font-weight: bold;
@@ -22,6 +23,7 @@
     margin: 0;
 }
 
+/* Credits Section */
 .footer-credits {
     font-size: 0.9rem;
     color: var(--color-text-light-grey);
@@ -40,17 +42,21 @@
     text-decoration: underline;
 }
 
+.heart-icon {
+    color: #e25555;
+}
+
 .social-links {
     display: flex;
     gap: 1rem;
     margin: 0;
 }
 
-.social-links a {
+.icon-btn {
     text-decoration: none;
     color: var(--color-text-white);
     padding: 0.5rem;
-    border: 1px solid var(--color-border-dark);
+    border: 1px solid var(--color-grey-dark);
     border-radius: 50%;
     transition: all 0.3s ease;
     display: flex;
@@ -58,9 +64,10 @@
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
+    will-change: transform;
 }
 
-.social-links a:hover {
+.icon-btn:hover {
     background-color: var(--color-primary-teal);
     border-color: var(--color-primary-teal);
     transform: translateY(-0.2rem);
@@ -91,10 +98,5 @@
 
     .footer-credits {
         order: 3;
-    }
-
-    .social-links a {
-        width: 2.5rem;
-        justify-content: center;
     }
 }

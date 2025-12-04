@@ -28,3 +28,15 @@ if (hamburger && mobileNav) {
     }
   });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof APP_CONSTANTS !== 'undefined') {
+        const instaPersonal = document.getElementById('link-insta-personal');
+        const instaBrand = document.getElementById('link-insta-brand');
+        const twitterBrand = document.getElementById('link-twitter-brand');
+
+        if (instaPersonal) instaPersonal.href = APP_CONSTANTS.socials.personalInstagram;
+        if (instaBrand) instaBrand.href = APP_CONSTANTS.socials.brandInstagram;
+        if (twitterBrand) twitterBrand.href = APP_CONSTANTS.socials.brandTwitter;
+    }
+});
