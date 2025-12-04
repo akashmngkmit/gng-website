@@ -1,7 +1,11 @@
 const APP_CONSTANTS = {
-    socials: {
-        personalInstagram: "https://instagram.com/akashmnandan",
-        brandInstagram: "https://instagram.com",
-        brandTwitter: "https://twitter.com"
-    }
+    instagram: {
+        personalUrl: "https://instagram.com/akashmnandan",
+        brandUrl: "https://instagram.com",
+        icon: "./assets/icons/instagram.svg",
+    },
+    twitter: {
+        brandUrl: "https://twitter.com",
+        icon: "./assets/icons/x.svg",
+    },
 };
