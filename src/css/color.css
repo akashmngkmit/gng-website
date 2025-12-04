@@ -1,15 +1,20 @@
 :root {
-    --bg-light: #F2F3F5;
-    --primary-text: #397578;
-    --primary-hover: #d19a00;
-    --bg-dark: #000000;
-    --bg-card-dark: #1a1a1a;
-    --text-white: #ffffff;
-    --text-light-grey: #e0e0e0;
-    --text-dark-grey: #555555;
-    --text-accent-teal: #4db6ac;
-    
-    --shadow-light: rgba(255, 255, 255, 0.05);
+    /* --- Backgrounds --- */
+    --color-bg-card-dark: #1a1a1a;          /* Dark Grey for cards */
+    --color-bg-light: #F2F3F5;              /* Light Grey for generic backgrounds */
+    --color-bg-section-dark: #000000;       /* Pure Black for main sections */
+    --color-border-dark: #333333;           /* Subtle border for dark theme */
 
-    --border-dark: #333333;
+    /* --- Primary Brand Colors --- */
+    --color-primary-accent: #d19a00;        /* Gold (Hover states/Subheadings) */
+    --color-primary-teal: #397578;          /* Dark Teal (Main Text/Buttons) */
+
+    /* --- Shadows --- */
+    --color-shadow-light: rgba(255, 255, 255, 0.05);
+
+    /* --- Text Colors --- */
+    --color-text-accent-teal: #4db6ac           /* Brighter Teal (Dark mode headings) */
+    --color-text-dark-grey: #555555;            /* Paragraphs on Light BG */
+    --color-text-light-grey: #e0e0e0;         /* Paragraphs on Dark BG */
+    --color-text-white: #ffffff;              /* Pure White text */
 }

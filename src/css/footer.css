@@ -1,10 +1,10 @@
 @import './color.css';
 
 .footer {
-    background-color: var(--bg-dark);
-    color: var(--text-white);
+    background-color: var(--color-bg-section-dark);
+    color: var(--color-text-white);
     padding: 2rem 5%;
-    border-top: 1px solid var(--border-dark);
+    border-top: 1px solid var(--color-border-dark);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -16,7 +16,7 @@
 .footer-title {
     font-size: 1.25rem;
     font-weight: bold;
-    color: var(--text-accent-teal);
+    color: var(--color-text-accent-teal);
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     margin: 0;
@@ -24,19 +24,19 @@
 
 .footer-credits {
     font-size: 0.9rem;
-    color: var(--text-light-grey);
+    color: var(--color-text-light-grey);
     text-align: center;
 }
 
 .footer-credits a {
-    color: var(--primary-hover);
+    color: var(--color-primary-accent);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .footer-credits a:hover {
-    color: var(--text-white);
+    color: var(--color-text-white);
     text-decoration: underline;
 }
 
@@ -48,9 +48,9 @@
 
 .social-links a {
     text-decoration: none;
-    color: var(--text-white);
+    color: var(--color-text-white);
     padding: 0.5rem;
-    border: 1px solid var(--border-dark);
+    border: 1px solid var(--color-border-dark);
     border-radius: 50%;
     transition: all 0.3s ease;
     display: flex;
@@ -61,8 +61,8 @@
 }
 
 .social-links a:hover {
-    background-color: var(--primary-text);
-    border-color: var(--primary-text);
+    background-color: var(--color-primary-teal);
+    border-color: var(--color-primary-teal);
     transform: translateY(-0.2rem);
 }
 
@@ -91,5 +91,10 @@
 
     .footer-credits {
         order: 3;
+    }
+
+    .social-links a {
+        width: 2.5rem;
+        justify-content: center;
     }
 }
