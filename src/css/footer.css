@@ -1,8 +1,8 @@
 @import './color.css';
 
 .footer {
-    background-color: var(--color-bg-section-dark);
-    color: var(--color-text-white);
+    background-color: var(--color-black);
+    color: var(--color-white);
     padding: 2rem 5%;
     border-top: 1px solid var(--color-grey-dark);
     display: flex;
@@ -13,32 +13,30 @@
     box-sizing: border-box;
 }
 
-/* App Name */
 .footer-title {
     font-size: 1.25rem;
     font-weight: bold;
-    color: var(--color-text-accent-teal);
+    color: var(--color-teal-light);
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     margin: 0;
 }
 
-/* Credits Section */
 .footer-credits {
     font-size: 0.9rem;
-    color: var(--color-text-light-grey);
+    color: var(--color-grey-lighter);
     text-align: center;
 }
 
 .footer-credits a {
-    color: var(--color-primary-accent);
+    color: var(--color-gold);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .footer-credits a:hover {
-    color: var(--color-text-white);
+    color: var(--color-white);
     text-decoration: underline;
 }
 
@@ -52,9 +50,10 @@
     margin: 0;
 }
 
+/* Reusable Utility Class for Icons */
 .icon-btn {
     text-decoration: none;
-    color: var(--color-text-white);
+    color: var(--color-white);
     padding: 0.5rem;
     border: 1px solid var(--color-grey-dark);
     border-radius: 50%;
@@ -68,8 +67,8 @@
 }
 
 .icon-btn:hover {
-    background-color: var(--color-primary-teal);
-    border-color: var(--color-primary-teal);
+    background-color: var(--color-teal-dark);
+    border-color: var(--color-teal-dark);
     transform: translateY(-0.2rem);
 }
 
@@ -98,5 +97,10 @@
 
     .footer-credits {
         order: 3;
+    }
+
+    .social-links a {
+        width: 2.5rem;
+        justify-content: center;
     }
 }
