@@ -1,20 +1,18 @@
 :root {
-    /* --- Backgrounds --- */
-    --color-bg-card-dark: #1a1a1a;          /* Dark Grey for cards */
-    --color-bg-light: #F2F3F5;              /* Light Grey for generic backgrounds */
-    --color-bg-section-dark: #000000;       /* Pure Black for main sections */
-    --color-border-dark: #333333;           /* Subtle border for dark theme */
+    /* --- Base Colors --- */
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-white-transparent: rgba(255, 255, 255, 0.05);
 
-    /* --- Primary Brand Colors --- */
-    --color-primary-accent: #d19a00;        /* Gold (Hover states/Subheadings) */
-    --color-primary-teal: #397578;          /* Dark Teal (Main Text/Buttons) */
+    /* --- Greys --- */
+    --color-grey-light: #F2F3F5;
+    --color-grey-lighter: #e0e0e0;
+    --color-grey-medium: #555555;
+    --color-grey-dark: #333333;
+    --color-grey-darker: #1a1a1a;
 
-    /* --- Shadows --- */
-    --color-shadow-light: rgba(255, 255, 255, 0.05);
-
-    /* --- Text Colors --- */
-    --color-text-accent-teal: #4db6ac           /* Brighter Teal (Dark mode headings) */
-    --color-text-dark-grey: #555555;            /* Paragraphs on Light BG */
-    --color-text-light-grey: #e0e0e0;         /* Paragraphs on Dark BG */
-    --color-text-white: #ffffff;              /* Pure White text */
+    /* --- Brand Colors --- */
+    --color-teal-dark: #397578;
+    --color-teal-light: #4db6ac;
+    --color-gold: #d19a00;
 }
