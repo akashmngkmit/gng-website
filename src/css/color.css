@@ -1,5 +1,18 @@
 :root {
-    --bg-light: #F2F3F5;
-    --primary-text: #397578;
-    --primary-hover: #d19a00;
+    /* --- Base Colors --- */
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-white-transparent: rgba(255, 255, 255, 0.05);
+
+    /* --- Greys --- */
+    --color-grey-light: #F2F3F5;
+    --color-grey-lighter: #e0e0e0;
+    --color-grey-medium: #555555;
+    --color-grey-dark: #333333;
+    --color-grey-darker: #1a1a1a;
+
+    /* --- Brand Colors --- */
+    --color-teal-dark: #397578;
+    --color-teal-light: #4db6ac;
+    --color-gold: #d19a00;
 }
