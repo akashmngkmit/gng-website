@@ -7,6 +7,28 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <h1 class="heading">Welcome to Groove and Grub</h1>
+    <div class="hero-section">
+    <!-- header -->
+    <header class="header">
+        <img src="./assets/images/gng-logo.png" alt="gng-logo" class="logo">
+        <!-- desktop navbar -->
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Menu</a>
+        </nav>
+        <!-- mobile navbar -->
+        <button class="hamburger-menu" id="hamburger-menu" aria-label="Toggle navigation" aria-expanded="false">
+            <img src="./assets/icons/hamburger-icon.png" alt="" aria-hidden="true">
+        </button>
+        <nav class="mobile-navbar" id="mobile-navbar" aria-hidden="true">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Menu</a>
+        </nav>
+    </header>
+    </div>
+    <!-- script for hamburger-menu -->
+    <script src="./js/main.js" defer></script>
 </body>
 </html>
