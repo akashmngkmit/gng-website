@@ -1,4 +1,5 @@
 const menuGrid = document.getElementById('menu-grid');
+const menuForm = document.getElementById('menu-form');
 
 let menuItems = JSON.parse(localStorage.getItem('menuData'));
 
@@ -100,6 +101,35 @@ function renderMenu() {
         menuGrid.appendChild(card);
     }
 }
+
+menuForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const nameVal = document.getElementById('foodName').value;
+    const priceVal = document.getElementById('foodPrice').value;
+    const categoryVal = document.getElementById('foodCategory').value;
+    const descVal = document.getElementById('foodDesc').value;
+    const imageVal = document.getElementById('foodImage').value || "https://placehold.co/600x400";
+
+    const newItem = {
+        id: Date.now(), 
+        name: nameVal,
+        price: priceVal,
+        category: categoryVal,
+        description: descVal,
+        image: imageVal
+    };
+
+    // push to the Array
+    menuItems.push(newItem);
+    localStorage.setItem('menuData', JSON.stringify(menuItems));
+
+    // render the menu again
+    renderMenu();
+
+    // reset the form
+    menuForm.reset();
+});
 
 // function to render menu on page
 renderMenu();
