@@ -1,0 +1,200 @@
+@import './color.css';
+
+.menu-manager-container {
+    max-width: 1200px;
+    margin: 8rem auto 5rem;
+    /* Top margin accounts for fixed header */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* --- Section Titles --- */
+h1,
+h2 {
+    color: var(--color-teal-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* --- Form Styles --- */
+.form-section {
+    background: var(--color-bg-light);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px var(--color-shadow-light);
+}
+
+#menu-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: var(--color-teal-dark);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.cta-btn {
+    grid-column: span 2;
+    background: var(--color-primary-accent);
+    color: var(--color-text-white);
+    border: none;
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.cta-btn:hover {
+    background: var(--color-teal-dark);
+}
+
+/* --- Grid Styles --- */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+/* --- Card Styles --- */
+.menu-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.card-header h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--color-teal-dark);
+}
+
+.card-price {
+    color: var(--color-primary-accent);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.card-tag {
+    align-self: flex-start;
+    background: var(--color-bg-light);
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.card-desc {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.btn-edit,
+.btn-delete {
+    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+.btn-edit {
+    background: var(--color-teal-dark);
+    color: white;
+}
+
+.btn-delete {
+    background: #e25555;
+    color: white;
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+    opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #menu-form {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-btn {
+        grid-column: span 1;
+    }
+}
