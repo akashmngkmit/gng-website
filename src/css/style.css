@@ -48,7 +48,7 @@ body {
     align-items: center;
     width: 100%;
     box-sizing: border-box;
-    z-index: 1000;
+    z-index: 1;
     transition: all 0.3s ease;
 }
 
@@ -122,7 +122,7 @@ body {
     visibility: hidden;
     transform: scale(0.95);
     transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
-    z-index: 200;
+    z-index: 1;
 }
 
 .mobile-navbar a {
