@@ -3,14 +3,12 @@
 .menu-manager-container {
     max-width: 1200px;
     margin: 8rem auto 5rem;
-    /* Top margin accounts for fixed header */
     padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 3rem;
 }
 
-/* --- Section Titles --- */
 h1,
 h2 {
     color: var(--color-teal-dark);
@@ -24,7 +22,6 @@ h1 {
     margin-bottom: 1rem;
 }
 
-/* --- Form Styles --- */
 .form-section {
     background: var(--color-bg-light);
     padding: 2rem;
@@ -188,7 +185,7 @@ h1 {
     opacity: 0.9;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
     #menu-form {
         grid-template-columns: 1fr;
