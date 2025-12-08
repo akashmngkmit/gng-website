@@ -38,7 +38,9 @@ body {
 }
 
 .header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     margin: 0;
     padding: 3rem 5%;
     display: flex;
@@ -46,6 +48,14 @@ body {
     align-items: center;
     width: 100%;
     box-sizing: border-box;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    background-color: var(--color-grey-darker);
+    padding: 1.5rem 5%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -112,7 +122,7 @@ body {
     visibility: hidden;
     transform: scale(0.95);
     transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
-    z-index: 200;
+    z-index: 1;
 }
 
 .mobile-navbar a {

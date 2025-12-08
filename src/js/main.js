@@ -28,3 +28,34 @@ if (hamburger && mobileNav) {
     }
   });
 }
+
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    if (header) {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof APP_CONSTANTS === 'undefined') return;
+
+    // Instagram
+    const instaPersonal = document.getElementById('link-insta-personal');
+    const instaBrand = document.getElementById('link-insta-brand');
+    const instaIcon = document.getElementById('icon-insta-brand');
+
+    if (instaPersonal) instaPersonal.href = APP_CONSTANTS.instagram.personalUrl;
+    if (instaBrand) instaBrand.href = APP_CONSTANTS.instagram.brandUrl;
+    if (instaIcon) instaIcon.src = APP_CONSTANTS.instagram.icon;
+
+    // Twitter / X
+    const twitterBrand = document.getElementById('link-twitter-brand');
+    const twitterIcon = document.getElementById('icon-twitter-brand');
+
+    if (twitterBrand) twitterBrand.href = APP_CONSTANTS.twitter.brandUrl;
+    if (twitterIcon) twitterIcon.src = APP_CONSTANTS.twitter.icon;
+});
