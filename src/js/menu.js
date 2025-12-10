@@ -4,12 +4,11 @@ const submitBtn = menuForm.querySelector('button');
 
 let isEditing = false;
 let editId = null;
-let db; 
+let db;
 
+// --- DATABASE SETUP ---
 
-// name the database
 const request = indexedDB.open("GrooveDB", 1);
-
 
 request.onupgradeneeded = function(event) {
     db = event.target.result;
@@ -18,19 +17,16 @@ request.onupgradeneeded = function(event) {
     }
 };
 
-// run on successful open
 request.onsuccess = function(event) {
     db = event.target.result;
-    loadMenu(); 
+    readItemsFromDB(); 
 };
 
-// handle errors
 request.onerror = function(event) {
     console.error("Database error:", event.target.errorCode);
 };
 
-// read all items from db
-function loadMenu() {
+function readItemsFromDB() {
     const transaction = db.transaction(["menu"], "readonly");
     const objectStore = transaction.objectStore("menu");
     const getAllRequest = objectStore.getAll();
@@ -41,145 +37,177 @@ function loadMenu() {
     };
 }
 
-// create or update item in db
-function saveItemToDB(item) {
+function createOrUpdateItemInDB(item) {
     const transaction = db.transaction(["menu"], "readwrite");
     const objectStore = transaction.objectStore("menu");
-    
     const request = objectStore.put(item);
 
     request.onsuccess = function() {
-        loadMenu(); 
+        readItemsFromDB(); 
     };
 }
 
-// delete item from db
 function deleteItemFromDB(id) {
     const transaction = db.transaction(["menu"], "readwrite");
     const objectStore = transaction.objectStore("menu");
     const request = objectStore.delete(id);
 
     request.onsuccess = function() {
-        loadMenu(); 
+        readItemsFromDB(); 
     };
 }
+
 
 function renderGrid(menuItems) {
     menuGrid.innerHTML = "";
-
-    for (let i = 0; i < menuItems.length; i++) {
-        const item = menuItems[i];
-
-        const card = document.createElement('div');
-        card.classList.add('menu-card');
-        card.id = 'card-' + item.id;
-
-        const img = document.createElement('img');
-        img.src = item.image;
-        img.alt = item.name;
-
-        const contentDiv = document.createElement('div');
-        contentDiv.classList.add('card-content');
-
-        const headerDiv = document.createElement('div');
-        headerDiv.classList.add('card-header');
-
-        const title = document.createElement('h3');
-        title.innerText = item.name;
-
-        const price = document.createElement('span');
-        price.classList.add('card-price');
-        price.innerText = '$' + item.price;
-
-        const tag = document.createElement('p');
-        tag.classList.add('card-tag');
-        tag.innerText = item.category;
-
-        const desc = document.createElement('p');
-        desc.classList.add('card-desc');
-        desc.innerText = item.description;
-
-        const actionsDiv = document.createElement('div');
-        actionsDiv.classList.add('action-buttons');
-
-        const editBtn = document.createElement('button');
-        editBtn.innerText = 'Edit';
-        editBtn.classList.add('btn-edit');
-        editBtn.onclick = function() {
-            startEdit(item.id);
-        };
-
-        const delBtn = document.createElement('button');
-        delBtn.innerText = 'Delete';
-        delBtn.classList.add('btn-delete');
-        delBtn.onclick = function() {
-            deleteItemFromDB(item.id);
-        };
-
-        headerDiv.appendChild(title);
-        headerDiv.appendChild(price);
-        actionsDiv.appendChild(editBtn);
-        actionsDiv.appendChild(delBtn);
-        contentDiv.appendChild(headerDiv);
-        contentDiv.appendChild(tag);
-        contentDiv.appendChild(desc);
-        contentDiv.appendChild(actionsDiv);
-        card.appendChild(img);
-        card.appendChild(contentDiv);
+    menuItems.forEach(item => {
+        const card = createMenuCard(item);
         menuGrid.appendChild(card);
-    }
+    });
 }
 
-// event listener for form submission
+function createMenuCard(item) {
+    const card = document.createElement('div');
+    card.classList.add('menu-card');
+    card.id = 'card-' + item.id;
+
+    const img = document.createElement('img');
+    img.src = item.image;
+    img.alt = item.name;
+
+    const contentDiv = createCardContent(item);
+
+    card.appendChild(img);
+    card.appendChild(contentDiv);
+    
+    return card;
+}
+
+function createCardContent(item) {
+    const contentDiv = document.createElement('div');
+    contentDiv.classList.add('card-content');
+
+    const headerDiv = document.createElement('div');
+    headerDiv.classList.add('card-header');
+
+    const title = document.createElement('h3');
+    title.innerText = item.name;
+
+    const price = document.createElement('span');
+    price.classList.add('card-price');
+    price.innerText = '$' + item.price;
+
+    headerDiv.appendChild(title);
+    headerDiv.appendChild(price);
+
+    const tag = document.createElement('p');
+    tag.classList.add('card-tag');
+    tag.innerText = item.category;
+
+    const desc = document.createElement('p');
+    desc.classList.add('card-desc');
+    desc.innerText = item.description;
+
+    const actionsDiv = createActionButtons(item.id);
+
+    contentDiv.appendChild(headerDiv);
+    contentDiv.appendChild(tag);
+    contentDiv.appendChild(desc);
+    contentDiv.appendChild(actionsDiv);
+
+    return contentDiv;
+}
+
+function createActionButtons(id) {
+    const actionsDiv = document.createElement('div');
+    actionsDiv.classList.add('action-buttons');
+
+    const editBtn = document.createElement('button');
+    editBtn.innerText = 'Edit';
+    editBtn.classList.add('btn-edit');
+    editBtn.onclick = () => startEdit(id);
+
+    const delBtn = document.createElement('button');
+    delBtn.innerText = 'Delete';
+    delBtn.classList.add('btn-delete');
+    delBtn.onclick = () => deleteItemFromDB(id);
+
+    actionsDiv.appendChild(editBtn);
+    actionsDiv.appendChild(delBtn);
+
+    return actionsDiv;
+}
+
 menuForm.addEventListener('submit', function(event) {
     event.preventDefault();
+    
+    if (isEditing) {
+        handleUpdateItem();
+    } else {
+        handleCreateItem();
+    }
+});
 
-    const nameVal = document.getElementById('foodName').value;
-    const priceVal = document.getElementById('foodPrice').value;
-    const categoryVal = document.getElementById('foodCategory').value;
-    const descVal = document.getElementById('foodDesc').value;
-    const imageVal = document.getElementById('foodImage').value || "https://placehold.co/600x400";
-
-    const item = {
-        id: isEditing ? editId : Date.now(),
-        name: nameVal,
-        price: priceVal,
-        category: categoryVal,
-        description: descVal,
-        image: imageVal
+function getFormData() {
+    return {
+        name: document.getElementById('foodName').value,
+        price: document.getElementById('foodPrice').value,
+        category: document.getElementById('foodCategory').value,
+        description: document.getElementById('foodDesc').value,
+        image: document.getElementById('foodImage').value || "https://placehold.co/600x400"
     };
+}
 
-    saveItemToDB(item); 
+function handleCreateItem() {
+    const data = getFormData();
+    const newItem = {
+        id: Date.now(),
+        ...data
+    };
+    createOrUpdateItemInDB(newItem);
+    resetFormState();
+}
 
+function handleUpdateItem() {
+    const data = getFormData();
+    const updatedItem = {
+        id: editId,
+        ...data
+    };
+    createOrUpdateItemInDB(updatedItem);
+    resetFormState();
+}
+
+function resetFormState() {
     menuForm.reset();
     isEditing = false;
     editId = null;
     submitBtn.innerText = "Add to Menu";
     submitBtn.style.background = "";
-});
+}
 
-// function for editing an item
 function startEdit(id) {
     const transaction = db.transaction(["menu"], "readonly");
     const objectStore = transaction.objectStore("menu");
     const request = objectStore.get(id);
 
     request.onsuccess = function(event) {
-        const itemFound = event.target.result;
-        
-        if (itemFound) {
-            document.getElementById('foodName').value = itemFound.name;
-            document.getElementById('foodPrice').value = itemFound.price;
-            document.getElementById('foodCategory').value = itemFound.category;
-            document.getElementById('foodDesc').value = itemFound.description;
-            document.getElementById('foodImage').value = itemFound.image;
-
+        const item = event.target.result;
+        if (item) {
+            populateForm(item);
             isEditing = true;
             editId = id;
             submitBtn.innerText = "Update Item";
-            submitBtn.style.background = "#d19a00";
-            
-            menuForm.scrollIntoView({behavior: "smooth"});
+            submitBtn.style.background = "var(--color-primary-accent)";
+            menuForm.scrollIntoView({ behavior: "smooth" });
         }
     };
+}
+
+function populateForm(item) {
+    document.getElementById('foodName').value = item.name;
+    document.getElementById('foodPrice').value = item.price;
+    document.getElementById('foodCategory').value = item.category;
+    document.getElementById('foodDesc').value = item.description;
+    document.getElementById('foodImage').value = item.image;
 }

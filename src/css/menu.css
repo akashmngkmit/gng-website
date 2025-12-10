@@ -1,7 +1,7 @@
 @import './color.css';
 
 .menu-manager-container {
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 8rem auto 5rem;
     padding: 2rem;
     display: flex;
@@ -33,6 +33,10 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
+    padding: 2rem;
+    border: 1px solid var(--color-grey-lighter);
+    border-radius: 2rem;
+    
 }
 
 .form-group {
@@ -51,7 +55,7 @@ h1 {
 .form-group select,
 .form-group textarea {
     padding: 0.8rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-grey-dark);
     border-radius: 0.5rem;
     font-size: 1rem;
     font-family: inherit;
@@ -63,7 +67,7 @@ h1 {
 
 .cta-btn {
     grid-column: span 2;
-    background: var(--color-primary-accent);
+    background: var(--color-grey-light);
     color: var(--color-text-white);
     border: none;
     padding: 1rem;
@@ -77,6 +81,7 @@ h1 {
 
 .cta-btn:hover {
     background: var(--color-teal-dark);
+    color: var(--color-white);
 }
 
 /* --- Grid Styles --- */
@@ -88,7 +93,7 @@ h1 {
 
 /* --- Card Styles --- */
 .menu-card {
-    background: white;
+    background: var(--color-white);
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -146,7 +151,7 @@ h1 {
 }
 
 .card-desc {
-    color: #555;
+    color: var(--color-grey-dark);
     font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: 1.5rem;
@@ -176,7 +181,7 @@ h1 {
 }
 
 .btn-delete {
-    background: #e25555;
+    background: var(--color-red-dark);
     color: white;
 }
 
