@@ -189,9 +189,9 @@ function resetFormState() {
 function startEdit(id) {
     const transaction = db.transaction(["menu"], "readonly");
     const objectStore = transaction.objectStore("menu");
-    const request = objectStore.get(id);
+    const getItemRequest = objectStore.get(id);
 
-    request.onsuccess = function(event) {
+    getItemRequest.onsuccess = function(event) {
         const item = event.target.result;
         if (item) {
             populateForm(item);
