@@ -144,7 +144,7 @@ h1 {
     padding: 0.2rem 0.6rem;
     border-radius: 1rem;
     font-size: 0.75rem;
-    color: #666;
+    color: var(--color-grey-medium);
     margin-bottom: 0.8rem;
     text-transform: uppercase;
     font-weight: bold;
@@ -156,6 +156,8 @@ h1 {
     line-height: 1.5;
     margin-bottom: 1.5rem;
     flex-grow: 1;
+    max-height: 5rem;
+    overflow: auto;
 }
 
 .action-buttons {
@@ -177,12 +179,12 @@ h1 {
 
 .btn-edit {
     background: var(--color-teal-dark);
-    color: white;
+    color: var(--color-white);
 }
 
 .btn-delete {
-    background: var(--color-red-dark);
-    color: white;
+    background: var(--color-pink-light);
+    color: var(--color-white);
 }
 
 .btn-edit:hover,
