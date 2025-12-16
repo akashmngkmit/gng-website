@@ -1,12 +1,12 @@
+import { API_URL } from "../config";
+
 const menuForm = document.getElementById('menu-form');
 const menuGrid = document.getElementById('menu-grid');
 const submitBtn = menuForm.querySelector('button');
 
-const API_URL = 'http://localhost:4000/api/menu';
-
 let isEditing = false;
 let editId = null;
-let currentMenuItems = [];
+let currentMenuItems = []; 
 
 async function fetchMenuItems() {
     try {
@@ -37,7 +37,7 @@ async function createItemInDB(item) {
 
         if (!response.ok) throw new Error('Failed to create item');
         
-        fetchMenuItems();
+        fetchMenuItems(); 
     } catch (error) {
         console.error('Error creating item:', error);
     }
@@ -53,7 +53,7 @@ async function updateItemInDB(item) {
 
         if (!response.ok) throw new Error('Failed to update item');
 
-        fetchMenuItems();
+        fetchMenuItems(); 
     } catch (error) {
         console.error('Error updating item:', error);
     }
@@ -69,7 +69,7 @@ async function deleteItemFromDB(id) {
 
         if (!response.ok) throw new Error('Failed to delete item');
 
-        fetchMenuItems();
+        fetchMenuItems(); 
     } catch (error) {
         console.error('Error deleting item:', error);
     }
@@ -189,7 +189,7 @@ function handleCreateItem() {
 function handleUpdateItem() {
     const data = getFormData();
     const updatedItem = {
-        id: editId,
+        id: editId, 
         ...data
     };
     updateItemInDB(updatedItem);
@@ -205,7 +205,7 @@ function resetFormState() {
 }
 
 function startEdit(id) {
-    const item = currentMenuItems.find(i => i.id === id);
+    const item = currentMenuItems.find(menuItem => menuItem.id === id);
 
     if (item) {
         populateForm(item);
