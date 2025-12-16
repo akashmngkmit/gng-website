@@ -2,64 +2,85 @@ const menuForm = document.getElementById('menu-form');
 const menuGrid = document.getElementById('menu-grid');
 const submitBtn = menuForm.querySelector('button');
 
+const API_URL = 'http://localhost:4000/api/menu';
+
 let isEditing = false;
 let editId = null;
-let db;
+let currentMenuItems = [];
 
-// --- DATABASE SETUP ---
+async function fetchMenuItems() {
+    try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error('Failed to fetch menu');
+        
+        const data = await response.json();
+        
+        currentMenuItems = data.map(item => ({
+            ...item,
+            id: item._id || item.id 
+        }));
 
-const request = indexedDB.open("GrooveDB", 1);
-
-request.onupgradeneeded = function(event) {
-    db = event.target.result;
-    if (!db.objectStoreNames.contains('menu')) {
-        db.createObjectStore('menu', { keyPath: 'id' });
+        renderGrid(currentMenuItems);
+    } catch (error) {
+        console.error('Error loading menu:', error);
+        menuGrid.innerHTML = '<p style="color:red; text-align:center;">Failed to load menu items. Is the server running?</p>';
     }
-};
-
-request.onsuccess = function(event) {
-    db = event.target.result;
-    readItemsFromDB(); 
-};
-
-request.onerror = function(event) {
-    console.error("Database error:", event.target.errorCode);
-};
-
-function readItemsFromDB() {
-    const transaction = db.transaction(["menu"], "readonly");
-    const objectStore = transaction.objectStore("menu");
-    const getAllRequest = objectStore.getAll();
-
-    getAllRequest.onsuccess = function(event) {
-        const items = event.target.result;
-        renderGrid(items);
-    };
 }
 
-function createOrUpdateItemInDB(item) {
-    const transaction = db.transaction(["menu"], "readwrite");
-    const objectStore = transaction.objectStore("menu");
-    const request = objectStore.put(item);
+async function createItemInDB(item) {
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item)
+        });
 
-    request.onsuccess = function() {
-        readItemsFromDB(); 
-    };
+        if (!response.ok) throw new Error('Failed to create item');
+        
+        fetchMenuItems();
+    } catch (error) {
+        console.error('Error creating item:', error);
+    }
 }
 
-function deleteItemFromDB(id) {
-    const transaction = db.transaction(["menu"], "readwrite");
-    const objectStore = transaction.objectStore("menu");
-    const request = objectStore.delete(id);
+async function updateItemInDB(item) {
+    try {
+        const response = await fetch(`${API_URL}/${item.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item)
+        });
 
-    request.onsuccess = function() {
-        readItemsFromDB(); 
-    };
+        if (!response.ok) throw new Error('Failed to update item');
+
+        fetchMenuItems();
+    } catch (error) {
+        console.error('Error updating item:', error);
+    }
 }
 
+async function deleteItemFromDB(id) {
+    if (!confirm('Are you sure you want to delete this item?')) return;
+
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) throw new Error('Failed to delete item');
+
+        fetchMenuItems();
+    } catch (error) {
+        console.error('Error deleting item:', error);
+    }
+}
 
 function renderGrid(menuItems) {
     menuGrid.innerHTML = "";
+    if (menuItems.length === 0) {
+        menuGrid.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">No items found. Add one above!</p>';
+        return;
+    }
     menuItems.forEach(item => {
         const card = createMenuCard(item);
         menuGrid.appendChild(card);
@@ -72,8 +93,9 @@ function createMenuCard(item) {
     card.id = 'card-' + item.id;
 
     const img = document.createElement('img');
-    img.src = item.image;
+    img.src = item.image || "https://placehold.co/600x400";
     img.alt = item.name;
+    img.onerror = function() { this.src = 'https://placehold.co/600x400?text=No+Image'; };
 
     const contentDiv = createCardContent(item);
 
@@ -154,17 +176,13 @@ function getFormData() {
         price: document.getElementById('foodPrice').value,
         category: document.getElementById('foodCategory').value,
         description: document.getElementById('foodDesc').value,
-        image: document.getElementById('foodImage').value || "https://placehold.co/600x400"
+        image: document.getElementById('foodImage').value
     };
 }
 
 function handleCreateItem() {
     const data = getFormData();
-    const newItem = {
-        id: Date.now(),
-        ...data
-    };
-    createOrUpdateItemInDB(newItem);
+    createItemInDB(data);
     resetFormState();
 }
 
@@ -174,7 +192,7 @@ function handleUpdateItem() {
         id: editId,
         ...data
     };
-    createOrUpdateItemInDB(updatedItem);
+    updateItemInDB(updatedItem);
     resetFormState();
 }
 
@@ -187,21 +205,16 @@ function resetFormState() {
 }
 
 function startEdit(id) {
-    const transaction = db.transaction(["menu"], "readonly");
-    const objectStore = transaction.objectStore("menu");
-    const getItemRequest = objectStore.get(id);
+    const item = currentMenuItems.find(i => i.id === id);
 
-    getItemRequest.onsuccess = function(event) {
-        const item = event.target.result;
-        if (item) {
-            populateForm(item);
-            isEditing = true;
-            editId = id;
-            submitBtn.innerText = "Update Item";
-            submitBtn.style.background = "var(--color-primary-accent)";
-            menuForm.scrollIntoView({ behavior: "smooth" });
-        }
-    };
+    if (item) {
+        populateForm(item);
+        isEditing = true;
+        editId = id;
+        submitBtn.innerText = "Update Item";
+        submitBtn.style.background = "var(--color-primary-accent)";
+        menuForm.scrollIntoView({ behavior: "smooth" });
+    }
 }
 
 function populateForm(item) {
@@ -211,3 +224,5 @@ function populateForm(item) {
     document.getElementById('foodDesc').value = item.description;
     document.getElementById('foodImage').value = item.image;
 }
+
+document.addEventListener('DOMContentLoaded', fetchMenuItems);
